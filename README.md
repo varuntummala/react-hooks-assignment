@@ -1,4 +1,4 @@
-# Options for starting this assignment:
+npm audit fix# Options for starting this assignment:
 
 ## Method 1: Cloning and Pushing to Your Own Repository
 This method will provide you with a React project that has a lot of the work already done for you. If you want to primarily focus on writing callback functions that manipulating state and call react hooks rather than styling and building a view with JSX, choose this method. If you want a more hands-on, realistic approach, try Method 2.
