@@ -3,7 +3,22 @@ import { useRef, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Player from "./Player";
 function ScoreBoard() {
- 
+    const [players, setPlayers] = useState([]);
+    const inputRef = useRef();
+
+    function addPlayer() {
+        let currentInputText = inputRef.current.value || undefined;
+        setPlayers([...players, { name: currentInputText, id: Date.now() }]);
+    }
+
+    function handleDelete(id) {
+        setPlayers(
+            players.filter((item) => {
+                return item.id !== id;
+            })
+        );
+    }
+
   return (
     <div className="container">
       <div className="row  text-center">
@@ -11,19 +26,21 @@ function ScoreBoard() {
       </div>
       <div className="row">
         <div className="col-md-4 m-auto">
-          <div class="input-group mb-3">
-            {/* Modify input so that it is either connected to a ref or some kind of input state */}
+          <div className="input-group mb-3">
+            {/* Modify input so that it is either connected to a ref or some kind of input state COMPLETE*/}
             <input
               type="text"
-              class="form-control"
+              ref={inputRef}
+              className="form-control"
               placeholder="New Player Name"
               aria-label="New Player Name"
               aria-describedby="addPlayer"
               required
             />
-            {/* add Add Player event handling to this button */}
+            {/* add Add Player event handling to this button COMPLETE */}
             <button
-              class="btn btn-outline-primary"
+              onClick={addPlayer}
+              className="btn btn-outline-primary"
               type="button"
               id="addPlayer"
             >
@@ -36,12 +53,13 @@ function ScoreBoard() {
         {players.map((player) => {
           return (
             <div className="col-md-4">
-              {/* Make sure to pass the unique id as a key */}
+              {/* Make sure to pass the unique id as a key COMPLETE */}
               <Player
                 key={player.id}
                 name={player.name}
+                handleDelete={() => handleDelete(player.id)}
                 // Anonymous arrow function that we can hold off activating
-                // until the user clicks a button inside of the Player component
+                // until the user clicks a button inside of the Player component COMPLETE
               />
             </div>
           );
